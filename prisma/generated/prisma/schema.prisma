@@ -1,0 +1,108 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider      = "prisma-client-js"
+  output        = "./generated/prisma"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  isAdmin   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Modelos para la Encuesta
+
+model Survey {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  description String?
+  isActive    Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  sections    Section[]
+  answers     Answer[]
+}
+
+model Section {
+  id          String     @id @default(cuid())
+  title       String
+  description String?
+  order       Int
+  surveyId    String
+  survey      Survey     @relation(fields: [surveyId], references: [id], onDelete: Cascade)
+  questions   Question[]
+
+  @@unique([surveyId, order])
+}
+
+enum QuestionType {
+  TEXT_SHORT
+  TEXT_LONG
+  SINGLE_CHOICE
+  // MULTIPLE_CHOICE // Descomentar si se necesita
+}
+
+model Question {
+  id            String           @id @default(cuid())
+  text          String
+  type          QuestionType
+  isRequired    Boolean          @default(true)
+  order         Int
+  placeholder   String?
+  sectionId     String
+  section       Section          @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  options       QuestionOption[]
+  answerDetails AnswerDetail[]
+
+  @@unique([sectionId, order])
+}
+
+model QuestionOption {
+  id            String         @id @default(cuid())
+  text          String
+  value         String? // Podría ser útil si el texto es largo y quieres un valor corto
+  order         Int
+  questionId    String
+  question      Question       @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  answerDetails AnswerDetail[] // Para rastrear cuántas veces se seleccionó esta opción
+
+  @@unique([questionId, order])
+}
+
+// Modelo para las respuestas de los usuarios (anónimas)
+model Answer {
+  id            String         @id @default(cuid())
+  surveyId      String
+  survey        Survey         @relation(fields: [surveyId], references: [id], onDelete: Cascade) // A qué encuesta se responde
+  submittedAt   DateTime       @default(now())
+  answerDetails AnswerDetail[]
+}
+
+model AnswerDetail {
+  id               String          @id @default(cuid())
+  answerId         String
+  answer           Answer          @relation(fields: [answerId], references: [id], onDelete: Cascade) // A qué conjunto de respuestas pertenece
+  questionId       String
+  question         Question        @relation(fields: [questionId], references: [id], onDelete: Cascade) // A qué pregunta se responde
+  value            String? // Para TEXT_SHORT, TEXT_LONG, o el valor de la opción seleccionada
+  selectedOptionId String? // Para SINGLE_CHOICE, MULTIPLE_CHOICE
+  selectedOption   QuestionOption? @relation(fields: [selectedOptionId], references: [id], onDelete: SetNull, onUpdate: Cascade, map: "answer_detail_selected_option_fk")
+
+  @@index([questionId])
+  @@index([selectedOptionId])
+}

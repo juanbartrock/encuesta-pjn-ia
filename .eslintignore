@@ -1,0 +1,10 @@
+# Ignorar directorios y archivos específicos para ESLint
+
+# Archivos generados por Prisma
+src/generated/prisma
+ 
+# Archivos de build y dependencias (generalmente ya cubiertos por la config de ESLint, pero por si acaso)
+.next
+node_modules
+out
+build 
