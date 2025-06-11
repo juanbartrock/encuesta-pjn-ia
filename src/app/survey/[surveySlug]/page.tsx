@@ -4,6 +4,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState, useCallback, ChangeEvent, FormEvent } from 'react';
 import PrivacyPolicyModal from '@/components/survey/PrivacyPolicyModal';
 import { QuestionType } from '@/generated/prisma'; // Para usar el tipo QuestionType
+import { getSurveyFingerprint } from '@/lib/fingerprint';
 
 // Interfaces para los datos de la encuesta pública
 interface PublicQuestionOption {
@@ -60,6 +61,7 @@ export default function SurveyPage() {
   const [answers, setAnswers] = useState<{ [questionId: string]: string | { [optionId: string]: boolean } }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [fingerprint, setFingerprint] = useState<string | null>(null);
 
   const handleInputChange = (
     questionId: string,
@@ -175,12 +177,27 @@ export default function SurveyPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ surveyId: surveyData.id, answers: transformedAnswers }),
+        body: JSON.stringify({ 
+          surveyId: surveyData.id, 
+          answers: transformedAnswers,
+          fingerprint: fingerprint || undefined // Incluir fingerprint si está disponible
+        }),
       });
 
       const responseData = await response.json();
 
       if (!response.ok) {
+        // Manejar casos específicos de error
+        if (response.status === 409 && responseData.code === 'DUPLICATE_RESPONSE') {
+          setSubmitError('Ya has respondido esta encuesta. Solo se permite una respuesta por persona.');
+          setIsSubmitting(false);
+          return;
+        }
+        if (response.status === 429) {
+          setSubmitError('Demasiados intentos de envío. Por favor intente nuevamente en 15 minutos.');
+          setIsSubmitting(false);
+          return;
+        }
         throw new Error(responseData.error || responseData.details || 'Error al enviar las respuestas.');
       }
 
@@ -209,6 +226,16 @@ export default function SurveyPage() {
       }
       const data: PublicSurveyData = await response.json();
       setSurveyData(data);
+      
+      // Generar fingerprint para esta encuesta
+      try {
+        const fp = await getSurveyFingerprint(data.id);
+        setFingerprint(fp);
+      } catch (err) {
+        console.error('Error generando fingerprint:', err);
+        // Continuar sin fingerprint (fallback se maneja en el backend)
+      }
+      
       setError(null);
     } catch (err) {
       setSurveyData(null);
@@ -375,13 +402,23 @@ export default function SurveyPage() {
             )}
 
             <div className="mt-10 pt-6 border-t border-gray-200 text-center">
+              {!fingerprint && (
+                <p className="text-sm text-gray-500 mb-4">
+                  ⏳ Preparando sistema de respuesta única...
+                </p>
+              )}
               <button 
                 type="submit"
-                disabled={isSubmitting} // Deshabilitar si está enviando
+                disabled={isSubmitting || !fingerprint} // Deshabilitar si está enviando o no hay fingerprint
                 className="px-8 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? 'Enviando...' : 'Enviar Respuestas'} {/* Texto dinámico */}
               </button>
+              {fingerprint && (
+                <p className="text-xs text-gray-400 mt-2">
+                  ✓ Sistema de respuesta única activado
+                </p>
+              )}
             </div>
           </form>
         ) : (

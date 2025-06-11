@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { QuestionType } from '@/generated/prisma';
+import { applyRateLimit } from '@/lib/rateLimiter';
 
 interface AnswerPayload {
   questionId: string;
@@ -11,6 +12,7 @@ interface AnswerPayload {
 interface SubmitAnswersPayload {
   surveyId: string; // El ID de la encuesta real.
   answers: AnswerPayload[];
+  fingerprint?: string; // Fingerprint del navegador
 }
 
 export async function POST(
@@ -18,6 +20,12 @@ export async function POST(
   { params }: { params: Promise<{ surveySlug: string }> }
 ) {
   try {
+    // 1. Aplicar rate limiting
+    const rateLimitResult = await applyRateLimit(request);
+    if (rateLimitResult) {
+      return rateLimitResult; // Retorna 429 si se excede el límite
+    }
+
     const { surveySlug } = await params;
     const body: SubmitAnswersPayload = await request.json();
 
@@ -25,7 +33,14 @@ export async function POST(
       return NextResponse.json({ error: "Payload inválido: surveyId y answers (array) son requeridos." }, { status: 400 });
     }
 
-    // 1. Obtener la encuesta y sus preguntas para validación
+    // 2. Generar fingerprint si no se proporcionó uno
+    let fingerprint = body.fingerprint;
+    if (!fingerprint) {
+      // Fallback: generar fingerprint temporal basado en timestamp
+      fingerprint = `fallback_${Date.now()}_${Math.random().toString(36).substring(2)}`;
+    }
+
+    // 3. Obtener la encuesta y sus preguntas para validación
     const surveyFromDb = await prisma.survey.findUnique({
       where: { slug: surveySlug, isActive: true },
       include: {
@@ -50,7 +65,22 @@ export async function POST(
       return NextResponse.json({ error: "Conflicto de ID de encuesta." }, { status: 400 });
     }
 
-    // 2. Validar respuestas obligatorias y contenido de respuestas
+    // 4. Verificar si ya existe una respuesta con este fingerprint para esta encuesta
+    const existingAnswer = await prisma.answer.findFirst({
+      where: {
+        surveyId: surveyFromDb.id,
+        fingerprint: fingerprint
+      }
+    });
+
+    if (existingAnswer) {
+      return NextResponse.json({ 
+        error: "Ya has respondido esta encuesta. Solo se permite una respuesta por persona.",
+        code: "DUPLICATE_RESPONSE"
+      }, { status: 409 });
+    }
+
+          // 5. Validar respuestas obligatorias y contenido de respuestas
     const allQuestions = surveyFromDb.sections.flatMap(s => s.questions);
     const receivedAnswersMap = new Map(body.answers.map(a => [a.questionId, a]));
 
@@ -75,16 +105,17 @@ export async function POST(
       }
     }
 
-    // 3. Transacción de Prisma para crear Answer y AnswerDetails
+    // 6. Transacción de Prisma para crear Answer y AnswerDetails
     const newAnswerRecord = await prisma.$transaction(async (tx) => {
-      // 4. Crear Answer
+      // 7. Crear Answer con fingerprint real
       const createdAnswer = await tx.answer.create({
         data: {
           surveyId: surveyFromDb.id,
+          fingerprint: fingerprint,
         },
       });
 
-      // 5. Crear AnswerDetails
+      // 8. Crear AnswerDetails
       const answerDetailsToCreate = body.answers
         .map(ans => {
           const question = allQuestions.find(q => q.id === ans.questionId);
@@ -121,10 +152,19 @@ export async function POST(
   } catch (error) {
     console.error(`[API_SUBMIT_ANSWERS] Error procesando respuestas para ${params ? (await params).surveySlug : 'slug desconocido'}:`, error);
     const errorMessage = error instanceof Error ? error.message : 'Error desconocido al procesar las respuestas.';
+    
     if (error instanceof SyntaxError) {
         return NextResponse.json({ error: "JSON malformado en el cuerpo de la solicitud" }, { status: 400 });
     }
-    // Podríamos querer manejar errores específicos de Prisma aquí (ej. P2002 Unique constraint failed)
+    
+    // Manejar violación de restricción única (P2002)
+    if (error instanceof Error && 'code' in error && error.code === 'P2002') {
+      return NextResponse.json({ 
+        error: "Ya has respondido esta encuesta. Solo se permite una respuesta por persona.",
+        code: "DUPLICATE_RESPONSE"
+      }, { status: 409 });
+    }
+    
     return NextResponse.json({ error: 'Error interno del servidor al procesar las respuestas.', details: errorMessage }, { status: 500 });
   }
 } 

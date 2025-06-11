@@ -1435,13 +1435,13 @@ export namespace Prisma {
    */
 
   export type SurveyCountOutputType = {
-    sections: number
     answers: number
+    sections: number
   }
 
   export type SurveyCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sections?: boolean | SurveyCountOutputTypeCountSectionsArgs
     answers?: boolean | SurveyCountOutputTypeCountAnswersArgs
+    sections?: boolean | SurveyCountOutputTypeCountSectionsArgs
   }
 
   // Custom InputTypes
@@ -1458,15 +1458,15 @@ export namespace Prisma {
   /**
    * SurveyCountOutputType without action
    */
-  export type SurveyCountOutputTypeCountSectionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SectionWhereInput
+  export type SurveyCountOutputTypeCountAnswersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AnswerWhereInput
   }
 
   /**
    * SurveyCountOutputType without action
    */
-  export type SurveyCountOutputTypeCountAnswersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AnswerWhereInput
+  export type SurveyCountOutputTypeCountSectionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SectionWhereInput
   }
 
 
@@ -1506,13 +1506,13 @@ export namespace Prisma {
    */
 
   export type QuestionCountOutputType = {
-    options: number
     answerDetails: number
+    options: number
   }
 
   export type QuestionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    options?: boolean | QuestionCountOutputTypeCountOptionsArgs
     answerDetails?: boolean | QuestionCountOutputTypeCountAnswerDetailsArgs
+    options?: boolean | QuestionCountOutputTypeCountOptionsArgs
   }
 
   // Custom InputTypes
@@ -1529,15 +1529,15 @@ export namespace Prisma {
   /**
    * QuestionCountOutputType without action
    */
-  export type QuestionCountOutputTypeCountOptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: QuestionOptionWhereInput
+  export type QuestionCountOutputTypeCountAnswerDetailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AnswerDetailWhereInput
   }
 
   /**
    * QuestionCountOutputType without action
    */
-  export type QuestionCountOutputTypeCountAnswerDetailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AnswerDetailWhereInput
+  export type QuestionCountOutputTypeCountOptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QuestionOptionWhereInput
   }
 
 
@@ -2795,8 +2795,8 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    sections?: boolean | Survey$sectionsArgs<ExtArgs>
     answers?: boolean | Survey$answersArgs<ExtArgs>
+    sections?: boolean | Survey$sectionsArgs<ExtArgs>
     _count?: boolean | SurveyCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["survey"]>
 
@@ -2832,8 +2832,8 @@ export namespace Prisma {
 
   export type SurveyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "description" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["survey"]>
   export type SurveyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sections?: boolean | Survey$sectionsArgs<ExtArgs>
     answers?: boolean | Survey$answersArgs<ExtArgs>
+    sections?: boolean | Survey$sectionsArgs<ExtArgs>
     _count?: boolean | SurveyCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type SurveyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2842,8 +2842,8 @@ export namespace Prisma {
   export type $SurveyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Survey"
     objects: {
-      sections: Prisma.$SectionPayload<ExtArgs>[]
       answers: Prisma.$AnswerPayload<ExtArgs>[]
+      sections: Prisma.$SectionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3247,8 +3247,8 @@ export namespace Prisma {
    */
   export interface Prisma__SurveyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    sections<T extends Survey$sectionsArgs<ExtArgs> = {}>(args?: Subset<T, Survey$sectionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     answers<T extends Survey$answersArgs<ExtArgs> = {}>(args?: Subset<T, Survey$answersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnswerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sections<T extends Survey$sectionsArgs<ExtArgs> = {}>(args?: Subset<T, Survey$sectionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3673,30 +3673,6 @@ export namespace Prisma {
   }
 
   /**
-   * Survey.sections
-   */
-  export type Survey$sectionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Section
-     */
-    select?: SectionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Section
-     */
-    omit?: SectionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SectionInclude<ExtArgs> | null
-    where?: SectionWhereInput
-    orderBy?: SectionOrderByWithRelationInput | SectionOrderByWithRelationInput[]
-    cursor?: SectionWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: SectionScalarFieldEnum | SectionScalarFieldEnum[]
-  }
-
-  /**
    * Survey.answers
    */
   export type Survey$answersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3718,6 +3694,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AnswerScalarFieldEnum | AnswerScalarFieldEnum[]
+  }
+
+  /**
+   * Survey.sections
+   */
+  export type Survey$sectionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Section
+     */
+    select?: SectionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Section
+     */
+    omit?: SectionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SectionInclude<ExtArgs> | null
+    where?: SectionWhereInput
+    orderBy?: SectionOrderByWithRelationInput | SectionOrderByWithRelationInput[]
+    cursor?: SectionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SectionScalarFieldEnum | SectionScalarFieldEnum[]
   }
 
   /**
@@ -3937,8 +3937,8 @@ export namespace Prisma {
     description?: boolean
     order?: boolean
     surveyId?: boolean
-    survey?: boolean | SurveyDefaultArgs<ExtArgs>
     questions?: boolean | Section$questionsArgs<ExtArgs>
+    survey?: boolean | SurveyDefaultArgs<ExtArgs>
     _count?: boolean | SectionCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["section"]>
 
@@ -3970,8 +3970,8 @@ export namespace Prisma {
 
   export type SectionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "order" | "surveyId", ExtArgs["result"]["section"]>
   export type SectionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    survey?: boolean | SurveyDefaultArgs<ExtArgs>
     questions?: boolean | Section$questionsArgs<ExtArgs>
+    survey?: boolean | SurveyDefaultArgs<ExtArgs>
     _count?: boolean | SectionCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type SectionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3984,8 +3984,8 @@ export namespace Prisma {
   export type $SectionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Section"
     objects: {
-      survey: Prisma.$SurveyPayload<ExtArgs>
       questions: Prisma.$QuestionPayload<ExtArgs>[]
+      survey: Prisma.$SurveyPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4387,8 +4387,8 @@ export namespace Prisma {
    */
   export interface Prisma__SectionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    survey<T extends SurveyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SurveyDefaultArgs<ExtArgs>>): Prisma__SurveyClient<$Result.GetResult<Prisma.$SurveyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     questions<T extends Section$questionsArgs<ExtArgs> = {}>(args?: Subset<T, Section$questionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    survey<T extends SurveyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SurveyDefaultArgs<ExtArgs>>): Prisma__SurveyClient<$Result.GetResult<Prisma.$SurveyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5075,9 +5075,9 @@ export namespace Prisma {
     order?: boolean
     placeholder?: boolean
     sectionId?: boolean
+    answerDetails?: boolean | Question$answerDetailsArgs<ExtArgs>
     section?: boolean | SectionDefaultArgs<ExtArgs>
     options?: boolean | Question$optionsArgs<ExtArgs>
-    answerDetails?: boolean | Question$answerDetailsArgs<ExtArgs>
     _count?: boolean | QuestionCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["question"]>
 
@@ -5115,9 +5115,9 @@ export namespace Prisma {
 
   export type QuestionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "text" | "type" | "isRequired" | "order" | "placeholder" | "sectionId", ExtArgs["result"]["question"]>
   export type QuestionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    answerDetails?: boolean | Question$answerDetailsArgs<ExtArgs>
     section?: boolean | SectionDefaultArgs<ExtArgs>
     options?: boolean | Question$optionsArgs<ExtArgs>
-    answerDetails?: boolean | Question$answerDetailsArgs<ExtArgs>
     _count?: boolean | QuestionCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type QuestionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5130,9 +5130,9 @@ export namespace Prisma {
   export type $QuestionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Question"
     objects: {
+      answerDetails: Prisma.$AnswerDetailPayload<ExtArgs>[]
       section: Prisma.$SectionPayload<ExtArgs>
       options: Prisma.$QuestionOptionPayload<ExtArgs>[]
-      answerDetails: Prisma.$AnswerDetailPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5536,9 +5536,9 @@ export namespace Prisma {
    */
   export interface Prisma__QuestionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    answerDetails<T extends Question$answerDetailsArgs<ExtArgs> = {}>(args?: Subset<T, Question$answerDetailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnswerDetailPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     section<T extends SectionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SectionDefaultArgs<ExtArgs>>): Prisma__SectionClient<$Result.GetResult<Prisma.$SectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     options<T extends Question$optionsArgs<ExtArgs> = {}>(args?: Subset<T, Question$optionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QuestionOptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    answerDetails<T extends Question$answerDetailsArgs<ExtArgs> = {}>(args?: Subset<T, Question$answerDetailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnswerDetailPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5971,30 +5971,6 @@ export namespace Prisma {
   }
 
   /**
-   * Question.options
-   */
-  export type Question$optionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the QuestionOption
-     */
-    select?: QuestionOptionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the QuestionOption
-     */
-    omit?: QuestionOptionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: QuestionOptionInclude<ExtArgs> | null
-    where?: QuestionOptionWhereInput
-    orderBy?: QuestionOptionOrderByWithRelationInput | QuestionOptionOrderByWithRelationInput[]
-    cursor?: QuestionOptionWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: QuestionOptionScalarFieldEnum | QuestionOptionScalarFieldEnum[]
-  }
-
-  /**
    * Question.answerDetails
    */
   export type Question$answerDetailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6016,6 +5992,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AnswerDetailScalarFieldEnum | AnswerDetailScalarFieldEnum[]
+  }
+
+  /**
+   * Question.options
+   */
+  export type Question$optionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QuestionOption
+     */
+    select?: QuestionOptionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QuestionOption
+     */
+    omit?: QuestionOptionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QuestionOptionInclude<ExtArgs> | null
+    where?: QuestionOptionWhereInput
+    orderBy?: QuestionOptionOrderByWithRelationInput | QuestionOptionOrderByWithRelationInput[]
+    cursor?: QuestionOptionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: QuestionOptionScalarFieldEnum | QuestionOptionScalarFieldEnum[]
   }
 
   /**
@@ -6235,8 +6235,8 @@ export namespace Prisma {
     value?: boolean
     order?: boolean
     questionId?: boolean
-    question?: boolean | QuestionDefaultArgs<ExtArgs>
     answerDetails?: boolean | QuestionOption$answerDetailsArgs<ExtArgs>
+    question?: boolean | QuestionDefaultArgs<ExtArgs>
     _count?: boolean | QuestionOptionCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["questionOption"]>
 
@@ -6268,8 +6268,8 @@ export namespace Prisma {
 
   export type QuestionOptionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "text" | "value" | "order" | "questionId", ExtArgs["result"]["questionOption"]>
   export type QuestionOptionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    question?: boolean | QuestionDefaultArgs<ExtArgs>
     answerDetails?: boolean | QuestionOption$answerDetailsArgs<ExtArgs>
+    question?: boolean | QuestionDefaultArgs<ExtArgs>
     _count?: boolean | QuestionOptionCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type QuestionOptionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6282,8 +6282,8 @@ export namespace Prisma {
   export type $QuestionOptionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "QuestionOption"
     objects: {
-      question: Prisma.$QuestionPayload<ExtArgs>
       answerDetails: Prisma.$AnswerDetailPayload<ExtArgs>[]
+      question: Prisma.$QuestionPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6685,8 +6685,8 @@ export namespace Prisma {
    */
   export interface Prisma__QuestionOptionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    question<T extends QuestionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, QuestionDefaultArgs<ExtArgs>>): Prisma__QuestionClient<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     answerDetails<T extends QuestionOption$answerDetailsArgs<ExtArgs> = {}>(args?: Subset<T, QuestionOption$answerDetailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnswerDetailPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    question<T extends QuestionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, QuestionDefaultArgs<ExtArgs>>): Prisma__QuestionClient<$Result.GetResult<Prisma.$QuestionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7173,18 +7173,21 @@ export namespace Prisma {
     id: string | null
     surveyId: string | null
     submittedAt: Date | null
+    fingerprint: string | null
   }
 
   export type AnswerMaxAggregateOutputType = {
     id: string | null
     surveyId: string | null
     submittedAt: Date | null
+    fingerprint: string | null
   }
 
   export type AnswerCountAggregateOutputType = {
     id: number
     surveyId: number
     submittedAt: number
+    fingerprint: number
     _all: number
   }
 
@@ -7193,18 +7196,21 @@ export namespace Prisma {
     id?: true
     surveyId?: true
     submittedAt?: true
+    fingerprint?: true
   }
 
   export type AnswerMaxAggregateInputType = {
     id?: true
     surveyId?: true
     submittedAt?: true
+    fingerprint?: true
   }
 
   export type AnswerCountAggregateInputType = {
     id?: true
     surveyId?: true
     submittedAt?: true
+    fingerprint?: true
     _all?: true
   }
 
@@ -7284,6 +7290,7 @@ export namespace Prisma {
     id: string
     surveyId: string
     submittedAt: Date
+    fingerprint: string
     _count: AnswerCountAggregateOutputType | null
     _min: AnswerMinAggregateOutputType | null
     _max: AnswerMaxAggregateOutputType | null
@@ -7307,6 +7314,7 @@ export namespace Prisma {
     id?: boolean
     surveyId?: boolean
     submittedAt?: boolean
+    fingerprint?: boolean
     survey?: boolean | SurveyDefaultArgs<ExtArgs>
     answerDetails?: boolean | Answer$answerDetailsArgs<ExtArgs>
     _count?: boolean | AnswerCountOutputTypeDefaultArgs<ExtArgs>
@@ -7316,6 +7324,7 @@ export namespace Prisma {
     id?: boolean
     surveyId?: boolean
     submittedAt?: boolean
+    fingerprint?: boolean
     survey?: boolean | SurveyDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["answer"]>
 
@@ -7323,6 +7332,7 @@ export namespace Prisma {
     id?: boolean
     surveyId?: boolean
     submittedAt?: boolean
+    fingerprint?: boolean
     survey?: boolean | SurveyDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["answer"]>
 
@@ -7330,9 +7340,10 @@ export namespace Prisma {
     id?: boolean
     surveyId?: boolean
     submittedAt?: boolean
+    fingerprint?: boolean
   }
 
-  export type AnswerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "surveyId" | "submittedAt", ExtArgs["result"]["answer"]>
+  export type AnswerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "surveyId" | "submittedAt" | "fingerprint", ExtArgs["result"]["answer"]>
   export type AnswerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     survey?: boolean | SurveyDefaultArgs<ExtArgs>
     answerDetails?: boolean | Answer$answerDetailsArgs<ExtArgs>
@@ -7355,6 +7366,7 @@ export namespace Prisma {
       id: string
       surveyId: string
       submittedAt: Date
+      fingerprint: string
     }, ExtArgs["result"]["answer"]>
     composites: {}
   }
@@ -7783,6 +7795,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Answer", 'String'>
     readonly surveyId: FieldRef<"Answer", 'String'>
     readonly submittedAt: FieldRef<"Answer", 'DateTime'>
+    readonly fingerprint: FieldRef<"Answer", 'String'>
   }
     
 
@@ -9391,7 +9404,8 @@ export namespace Prisma {
   export const AnswerScalarFieldEnum: {
     id: 'id',
     surveyId: 'surveyId',
-    submittedAt: 'submittedAt'
+    submittedAt: 'submittedAt',
+    fingerprint: 'fingerprint'
   };
 
   export type AnswerScalarFieldEnum = (typeof AnswerScalarFieldEnum)[keyof typeof AnswerScalarFieldEnum]
@@ -9585,8 +9599,8 @@ export namespace Prisma {
     isActive?: BoolFilter<"Survey"> | boolean
     createdAt?: DateTimeFilter<"Survey"> | Date | string
     updatedAt?: DateTimeFilter<"Survey"> | Date | string
-    sections?: SectionListRelationFilter
     answers?: AnswerListRelationFilter
+    sections?: SectionListRelationFilter
   }
 
   export type SurveyOrderByWithRelationInput = {
@@ -9597,8 +9611,8 @@ export namespace Prisma {
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    sections?: SectionOrderByRelationAggregateInput
     answers?: AnswerOrderByRelationAggregateInput
+    sections?: SectionOrderByRelationAggregateInput
   }
 
   export type SurveyWhereUniqueInput = Prisma.AtLeast<{
@@ -9612,8 +9626,8 @@ export namespace Prisma {
     isActive?: BoolFilter<"Survey"> | boolean
     createdAt?: DateTimeFilter<"Survey"> | Date | string
     updatedAt?: DateTimeFilter<"Survey"> | Date | string
-    sections?: SectionListRelationFilter
     answers?: AnswerListRelationFilter
+    sections?: SectionListRelationFilter
   }, "id" | "slug">
 
   export type SurveyOrderByWithAggregationInput = {
@@ -9651,8 +9665,8 @@ export namespace Prisma {
     description?: StringNullableFilter<"Section"> | string | null
     order?: IntFilter<"Section"> | number
     surveyId?: StringFilter<"Section"> | string
-    survey?: XOR<SurveyScalarRelationFilter, SurveyWhereInput>
     questions?: QuestionListRelationFilter
+    survey?: XOR<SurveyScalarRelationFilter, SurveyWhereInput>
   }
 
   export type SectionOrderByWithRelationInput = {
@@ -9661,8 +9675,8 @@ export namespace Prisma {
     description?: SortOrderInput | SortOrder
     order?: SortOrder
     surveyId?: SortOrder
-    survey?: SurveyOrderByWithRelationInput
     questions?: QuestionOrderByRelationAggregateInput
+    survey?: SurveyOrderByWithRelationInput
   }
 
   export type SectionWhereUniqueInput = Prisma.AtLeast<{
@@ -9675,8 +9689,8 @@ export namespace Prisma {
     description?: StringNullableFilter<"Section"> | string | null
     order?: IntFilter<"Section"> | number
     surveyId?: StringFilter<"Section"> | string
-    survey?: XOR<SurveyScalarRelationFilter, SurveyWhereInput>
     questions?: QuestionListRelationFilter
+    survey?: XOR<SurveyScalarRelationFilter, SurveyWhereInput>
   }, "id" | "surveyId_order">
 
   export type SectionOrderByWithAggregationInput = {
@@ -9714,9 +9728,9 @@ export namespace Prisma {
     order?: IntFilter<"Question"> | number
     placeholder?: StringNullableFilter<"Question"> | string | null
     sectionId?: StringFilter<"Question"> | string
+    answerDetails?: AnswerDetailListRelationFilter
     section?: XOR<SectionScalarRelationFilter, SectionWhereInput>
     options?: QuestionOptionListRelationFilter
-    answerDetails?: AnswerDetailListRelationFilter
   }
 
   export type QuestionOrderByWithRelationInput = {
@@ -9727,9 +9741,9 @@ export namespace Prisma {
     order?: SortOrder
     placeholder?: SortOrderInput | SortOrder
     sectionId?: SortOrder
+    answerDetails?: AnswerDetailOrderByRelationAggregateInput
     section?: SectionOrderByWithRelationInput
     options?: QuestionOptionOrderByRelationAggregateInput
-    answerDetails?: AnswerDetailOrderByRelationAggregateInput
   }
 
   export type QuestionWhereUniqueInput = Prisma.AtLeast<{
@@ -9744,9 +9758,9 @@ export namespace Prisma {
     order?: IntFilter<"Question"> | number
     placeholder?: StringNullableFilter<"Question"> | string | null
     sectionId?: StringFilter<"Question"> | string
+    answerDetails?: AnswerDetailListRelationFilter
     section?: XOR<SectionScalarRelationFilter, SectionWhereInput>
     options?: QuestionOptionListRelationFilter
-    answerDetails?: AnswerDetailListRelationFilter
   }, "id" | "sectionId_order">
 
   export type QuestionOrderByWithAggregationInput = {
@@ -9786,8 +9800,8 @@ export namespace Prisma {
     value?: StringNullableFilter<"QuestionOption"> | string | null
     order?: IntFilter<"QuestionOption"> | number
     questionId?: StringFilter<"QuestionOption"> | string
-    question?: XOR<QuestionScalarRelationFilter, QuestionWhereInput>
     answerDetails?: AnswerDetailListRelationFilter
+    question?: XOR<QuestionScalarRelationFilter, QuestionWhereInput>
   }
 
   export type QuestionOptionOrderByWithRelationInput = {
@@ -9796,8 +9810,8 @@ export namespace Prisma {
     value?: SortOrderInput | SortOrder
     order?: SortOrder
     questionId?: SortOrder
-    question?: QuestionOrderByWithRelationInput
     answerDetails?: AnswerDetailOrderByRelationAggregateInput
+    question?: QuestionOrderByWithRelationInput
   }
 
   export type QuestionOptionWhereUniqueInput = Prisma.AtLeast<{
@@ -9810,8 +9824,8 @@ export namespace Prisma {
     value?: StringNullableFilter<"QuestionOption"> | string | null
     order?: IntFilter<"QuestionOption"> | number
     questionId?: StringFilter<"QuestionOption"> | string
-    question?: XOR<QuestionScalarRelationFilter, QuestionWhereInput>
     answerDetails?: AnswerDetailListRelationFilter
+    question?: XOR<QuestionScalarRelationFilter, QuestionWhereInput>
   }, "id" | "questionId_order">
 
   export type QuestionOptionOrderByWithAggregationInput = {
@@ -9845,6 +9859,7 @@ export namespace Prisma {
     id?: StringFilter<"Answer"> | string
     surveyId?: StringFilter<"Answer"> | string
     submittedAt?: DateTimeFilter<"Answer"> | Date | string
+    fingerprint?: StringFilter<"Answer"> | string
     survey?: XOR<SurveyScalarRelationFilter, SurveyWhereInput>
     answerDetails?: AnswerDetailListRelationFilter
   }
@@ -9853,25 +9868,29 @@ export namespace Prisma {
     id?: SortOrder
     surveyId?: SortOrder
     submittedAt?: SortOrder
+    fingerprint?: SortOrder
     survey?: SurveyOrderByWithRelationInput
     answerDetails?: AnswerDetailOrderByRelationAggregateInput
   }
 
   export type AnswerWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    surveyId_fingerprint?: AnswerSurveyIdFingerprintCompoundUniqueInput
     AND?: AnswerWhereInput | AnswerWhereInput[]
     OR?: AnswerWhereInput[]
     NOT?: AnswerWhereInput | AnswerWhereInput[]
     surveyId?: StringFilter<"Answer"> | string
     submittedAt?: DateTimeFilter<"Answer"> | Date | string
+    fingerprint?: StringFilter<"Answer"> | string
     survey?: XOR<SurveyScalarRelationFilter, SurveyWhereInput>
     answerDetails?: AnswerDetailListRelationFilter
-  }, "id">
+  }, "id" | "surveyId_fingerprint">
 
   export type AnswerOrderByWithAggregationInput = {
     id?: SortOrder
     surveyId?: SortOrder
     submittedAt?: SortOrder
+    fingerprint?: SortOrder
     _count?: AnswerCountOrderByAggregateInput
     _max?: AnswerMaxOrderByAggregateInput
     _min?: AnswerMinOrderByAggregateInput
@@ -9884,6 +9903,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Answer"> | string
     surveyId?: StringWithAggregatesFilter<"Answer"> | string
     submittedAt?: DateTimeWithAggregatesFilter<"Answer"> | Date | string
+    fingerprint?: StringWithAggregatesFilter<"Answer"> | string
   }
 
   export type AnswerDetailWhereInput = {
@@ -10018,8 +10038,8 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    sections?: SectionCreateNestedManyWithoutSurveyInput
     answers?: AnswerCreateNestedManyWithoutSurveyInput
+    sections?: SectionCreateNestedManyWithoutSurveyInput
   }
 
   export type SurveyUncheckedCreateInput = {
@@ -10030,8 +10050,8 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    sections?: SectionUncheckedCreateNestedManyWithoutSurveyInput
     answers?: AnswerUncheckedCreateNestedManyWithoutSurveyInput
+    sections?: SectionUncheckedCreateNestedManyWithoutSurveyInput
   }
 
   export type SurveyUpdateInput = {
@@ -10042,8 +10062,8 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sections?: SectionUpdateManyWithoutSurveyNestedInput
     answers?: AnswerUpdateManyWithoutSurveyNestedInput
+    sections?: SectionUpdateManyWithoutSurveyNestedInput
   }
 
   export type SurveyUncheckedUpdateInput = {
@@ -10054,8 +10074,8 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sections?: SectionUncheckedUpdateManyWithoutSurveyNestedInput
     answers?: AnswerUncheckedUpdateManyWithoutSurveyNestedInput
+    sections?: SectionUncheckedUpdateManyWithoutSurveyNestedInput
   }
 
   export type SurveyCreateManyInput = {
@@ -10093,8 +10113,8 @@ export namespace Prisma {
     title: string
     description?: string | null
     order: number
-    survey: SurveyCreateNestedOneWithoutSectionsInput
     questions?: QuestionCreateNestedManyWithoutSectionInput
+    survey: SurveyCreateNestedOneWithoutSectionsInput
   }
 
   export type SectionUncheckedCreateInput = {
@@ -10111,8 +10131,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
-    survey?: SurveyUpdateOneRequiredWithoutSectionsNestedInput
     questions?: QuestionUpdateManyWithoutSectionNestedInput
+    survey?: SurveyUpdateOneRequiredWithoutSectionsNestedInput
   }
 
   export type SectionUncheckedUpdateInput = {
@@ -10154,9 +10174,9 @@ export namespace Prisma {
     isRequired?: boolean
     order: number
     placeholder?: string | null
+    answerDetails?: AnswerDetailCreateNestedManyWithoutQuestionInput
     section: SectionCreateNestedOneWithoutQuestionsInput
     options?: QuestionOptionCreateNestedManyWithoutQuestionInput
-    answerDetails?: AnswerDetailCreateNestedManyWithoutQuestionInput
   }
 
   export type QuestionUncheckedCreateInput = {
@@ -10167,8 +10187,8 @@ export namespace Prisma {
     order: number
     placeholder?: string | null
     sectionId: string
-    options?: QuestionOptionUncheckedCreateNestedManyWithoutQuestionInput
     answerDetails?: AnswerDetailUncheckedCreateNestedManyWithoutQuestionInput
+    options?: QuestionOptionUncheckedCreateNestedManyWithoutQuestionInput
   }
 
   export type QuestionUpdateInput = {
@@ -10178,9 +10198,9 @@ export namespace Prisma {
     isRequired?: BoolFieldUpdateOperationsInput | boolean
     order?: IntFieldUpdateOperationsInput | number
     placeholder?: NullableStringFieldUpdateOperationsInput | string | null
+    answerDetails?: AnswerDetailUpdateManyWithoutQuestionNestedInput
     section?: SectionUpdateOneRequiredWithoutQuestionsNestedInput
     options?: QuestionOptionUpdateManyWithoutQuestionNestedInput
-    answerDetails?: AnswerDetailUpdateManyWithoutQuestionNestedInput
   }
 
   export type QuestionUncheckedUpdateInput = {
@@ -10191,8 +10211,8 @@ export namespace Prisma {
     order?: IntFieldUpdateOperationsInput | number
     placeholder?: NullableStringFieldUpdateOperationsInput | string | null
     sectionId?: StringFieldUpdateOperationsInput | string
-    options?: QuestionOptionUncheckedUpdateManyWithoutQuestionNestedInput
     answerDetails?: AnswerDetailUncheckedUpdateManyWithoutQuestionNestedInput
+    options?: QuestionOptionUncheckedUpdateManyWithoutQuestionNestedInput
   }
 
   export type QuestionCreateManyInput = {
@@ -10229,8 +10249,8 @@ export namespace Prisma {
     text: string
     value?: string | null
     order: number
-    question: QuestionCreateNestedOneWithoutOptionsInput
     answerDetails?: AnswerDetailCreateNestedManyWithoutSelectedOptionInput
+    question: QuestionCreateNestedOneWithoutOptionsInput
   }
 
   export type QuestionOptionUncheckedCreateInput = {
@@ -10247,8 +10267,8 @@ export namespace Prisma {
     text?: StringFieldUpdateOperationsInput | string
     value?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
-    question?: QuestionUpdateOneRequiredWithoutOptionsNestedInput
     answerDetails?: AnswerDetailUpdateManyWithoutSelectedOptionNestedInput
+    question?: QuestionUpdateOneRequiredWithoutOptionsNestedInput
   }
 
   export type QuestionOptionUncheckedUpdateInput = {
@@ -10286,6 +10306,7 @@ export namespace Prisma {
   export type AnswerCreateInput = {
     id?: string
     submittedAt?: Date | string
+    fingerprint: string
     survey: SurveyCreateNestedOneWithoutAnswersInput
     answerDetails?: AnswerDetailCreateNestedManyWithoutAnswerInput
   }
@@ -10294,12 +10315,14 @@ export namespace Prisma {
     id?: string
     surveyId: string
     submittedAt?: Date | string
+    fingerprint: string
     answerDetails?: AnswerDetailUncheckedCreateNestedManyWithoutAnswerInput
   }
 
   export type AnswerUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fingerprint?: StringFieldUpdateOperationsInput | string
     survey?: SurveyUpdateOneRequiredWithoutAnswersNestedInput
     answerDetails?: AnswerDetailUpdateManyWithoutAnswerNestedInput
   }
@@ -10308,6 +10331,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     surveyId?: StringFieldUpdateOperationsInput | string
     submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fingerprint?: StringFieldUpdateOperationsInput | string
     answerDetails?: AnswerDetailUncheckedUpdateManyWithoutAnswerNestedInput
   }
 
@@ -10315,17 +10339,20 @@ export namespace Prisma {
     id?: string
     surveyId: string
     submittedAt?: Date | string
+    fingerprint: string
   }
 
   export type AnswerUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fingerprint?: StringFieldUpdateOperationsInput | string
   }
 
   export type AnswerUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     surveyId?: StringFieldUpdateOperationsInput | string
     submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fingerprint?: StringFieldUpdateOperationsInput | string
   }
 
   export type AnswerDetailCreateInput = {
@@ -10494,16 +10521,16 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type SectionListRelationFilter = {
-    every?: SectionWhereInput
-    some?: SectionWhereInput
-    none?: SectionWhereInput
-  }
-
   export type AnswerListRelationFilter = {
     every?: AnswerWhereInput
     some?: AnswerWhereInput
     none?: AnswerWhereInput
+  }
+
+  export type SectionListRelationFilter = {
+    every?: SectionWhereInput
+    some?: SectionWhereInput
+    none?: SectionWhereInput
   }
 
   export type SortOrderInput = {
@@ -10511,11 +10538,11 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type SectionOrderByRelationAggregateInput = {
+  export type AnswerOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type AnswerOrderByRelationAggregateInput = {
+  export type SectionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -10578,15 +10605,15 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type SurveyScalarRelationFilter = {
-    is?: SurveyWhereInput
-    isNot?: SurveyWhereInput
-  }
-
   export type QuestionListRelationFilter = {
     every?: QuestionWhereInput
     some?: QuestionWhereInput
     none?: QuestionWhereInput
+  }
+
+  export type SurveyScalarRelationFilter = {
+    is?: SurveyWhereInput
+    isNot?: SurveyWhereInput
   }
 
   export type QuestionOrderByRelationAggregateInput = {
@@ -10653,6 +10680,12 @@ export namespace Prisma {
     not?: NestedEnumQuestionTypeFilter<$PrismaModel> | $Enums.QuestionType
   }
 
+  export type AnswerDetailListRelationFilter = {
+    every?: AnswerDetailWhereInput
+    some?: AnswerDetailWhereInput
+    none?: AnswerDetailWhereInput
+  }
+
   export type SectionScalarRelationFilter = {
     is?: SectionWhereInput
     isNot?: SectionWhereInput
@@ -10664,17 +10697,11 @@ export namespace Prisma {
     none?: QuestionOptionWhereInput
   }
 
-  export type AnswerDetailListRelationFilter = {
-    every?: AnswerDetailWhereInput
-    some?: AnswerDetailWhereInput
-    none?: AnswerDetailWhereInput
-  }
-
-  export type QuestionOptionOrderByRelationAggregateInput = {
+  export type AnswerDetailOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type AnswerDetailOrderByRelationAggregateInput = {
+  export type QuestionOptionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -10773,22 +10800,30 @@ export namespace Prisma {
     order?: SortOrder
   }
 
+  export type AnswerSurveyIdFingerprintCompoundUniqueInput = {
+    surveyId: string
+    fingerprint: string
+  }
+
   export type AnswerCountOrderByAggregateInput = {
     id?: SortOrder
     surveyId?: SortOrder
     submittedAt?: SortOrder
+    fingerprint?: SortOrder
   }
 
   export type AnswerMaxOrderByAggregateInput = {
     id?: SortOrder
     surveyId?: SortOrder
     submittedAt?: SortOrder
+    fingerprint?: SortOrder
   }
 
   export type AnswerMinOrderByAggregateInput = {
     id?: SortOrder
     surveyId?: SortOrder
     submittedAt?: SortOrder
+    fingerprint?: SortOrder
   }
 
   export type AnswerScalarRelationFilter = {
@@ -10837,13 +10872,6 @@ export namespace Prisma {
     set?: Date | string
   }
 
-  export type SectionCreateNestedManyWithoutSurveyInput = {
-    create?: XOR<SectionCreateWithoutSurveyInput, SectionUncheckedCreateWithoutSurveyInput> | SectionCreateWithoutSurveyInput[] | SectionUncheckedCreateWithoutSurveyInput[]
-    connectOrCreate?: SectionCreateOrConnectWithoutSurveyInput | SectionCreateOrConnectWithoutSurveyInput[]
-    createMany?: SectionCreateManySurveyInputEnvelope
-    connect?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
-  }
-
   export type AnswerCreateNestedManyWithoutSurveyInput = {
     create?: XOR<AnswerCreateWithoutSurveyInput, AnswerUncheckedCreateWithoutSurveyInput> | AnswerCreateWithoutSurveyInput[] | AnswerUncheckedCreateWithoutSurveyInput[]
     connectOrCreate?: AnswerCreateOrConnectWithoutSurveyInput | AnswerCreateOrConnectWithoutSurveyInput[]
@@ -10851,7 +10879,7 @@ export namespace Prisma {
     connect?: AnswerWhereUniqueInput | AnswerWhereUniqueInput[]
   }
 
-  export type SectionUncheckedCreateNestedManyWithoutSurveyInput = {
+  export type SectionCreateNestedManyWithoutSurveyInput = {
     create?: XOR<SectionCreateWithoutSurveyInput, SectionUncheckedCreateWithoutSurveyInput> | SectionCreateWithoutSurveyInput[] | SectionUncheckedCreateWithoutSurveyInput[]
     connectOrCreate?: SectionCreateOrConnectWithoutSurveyInput | SectionCreateOrConnectWithoutSurveyInput[]
     createMany?: SectionCreateManySurveyInputEnvelope
@@ -10865,22 +10893,15 @@ export namespace Prisma {
     connect?: AnswerWhereUniqueInput | AnswerWhereUniqueInput[]
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
-  export type SectionUpdateManyWithoutSurveyNestedInput = {
+  export type SectionUncheckedCreateNestedManyWithoutSurveyInput = {
     create?: XOR<SectionCreateWithoutSurveyInput, SectionUncheckedCreateWithoutSurveyInput> | SectionCreateWithoutSurveyInput[] | SectionUncheckedCreateWithoutSurveyInput[]
     connectOrCreate?: SectionCreateOrConnectWithoutSurveyInput | SectionCreateOrConnectWithoutSurveyInput[]
-    upsert?: SectionUpsertWithWhereUniqueWithoutSurveyInput | SectionUpsertWithWhereUniqueWithoutSurveyInput[]
     createMany?: SectionCreateManySurveyInputEnvelope
-    set?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
-    disconnect?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
-    delete?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
     connect?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
-    update?: SectionUpdateWithWhereUniqueWithoutSurveyInput | SectionUpdateWithWhereUniqueWithoutSurveyInput[]
-    updateMany?: SectionUpdateManyWithWhereWithoutSurveyInput | SectionUpdateManyWithWhereWithoutSurveyInput[]
-    deleteMany?: SectionScalarWhereInput | SectionScalarWhereInput[]
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type AnswerUpdateManyWithoutSurveyNestedInput = {
@@ -10897,7 +10918,7 @@ export namespace Prisma {
     deleteMany?: AnswerScalarWhereInput | AnswerScalarWhereInput[]
   }
 
-  export type SectionUncheckedUpdateManyWithoutSurveyNestedInput = {
+  export type SectionUpdateManyWithoutSurveyNestedInput = {
     create?: XOR<SectionCreateWithoutSurveyInput, SectionUncheckedCreateWithoutSurveyInput> | SectionCreateWithoutSurveyInput[] | SectionUncheckedCreateWithoutSurveyInput[]
     connectOrCreate?: SectionCreateOrConnectWithoutSurveyInput | SectionCreateOrConnectWithoutSurveyInput[]
     upsert?: SectionUpsertWithWhereUniqueWithoutSurveyInput | SectionUpsertWithWhereUniqueWithoutSurveyInput[]
@@ -10925,10 +10946,18 @@ export namespace Prisma {
     deleteMany?: AnswerScalarWhereInput | AnswerScalarWhereInput[]
   }
 
-  export type SurveyCreateNestedOneWithoutSectionsInput = {
-    create?: XOR<SurveyCreateWithoutSectionsInput, SurveyUncheckedCreateWithoutSectionsInput>
-    connectOrCreate?: SurveyCreateOrConnectWithoutSectionsInput
-    connect?: SurveyWhereUniqueInput
+  export type SectionUncheckedUpdateManyWithoutSurveyNestedInput = {
+    create?: XOR<SectionCreateWithoutSurveyInput, SectionUncheckedCreateWithoutSurveyInput> | SectionCreateWithoutSurveyInput[] | SectionUncheckedCreateWithoutSurveyInput[]
+    connectOrCreate?: SectionCreateOrConnectWithoutSurveyInput | SectionCreateOrConnectWithoutSurveyInput[]
+    upsert?: SectionUpsertWithWhereUniqueWithoutSurveyInput | SectionUpsertWithWhereUniqueWithoutSurveyInput[]
+    createMany?: SectionCreateManySurveyInputEnvelope
+    set?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
+    disconnect?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
+    delete?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
+    connect?: SectionWhereUniqueInput | SectionWhereUniqueInput[]
+    update?: SectionUpdateWithWhereUniqueWithoutSurveyInput | SectionUpdateWithWhereUniqueWithoutSurveyInput[]
+    updateMany?: SectionUpdateManyWithWhereWithoutSurveyInput | SectionUpdateManyWithWhereWithoutSurveyInput[]
+    deleteMany?: SectionScalarWhereInput | SectionScalarWhereInput[]
   }
 
   export type QuestionCreateNestedManyWithoutSectionInput = {
@@ -10936,6 +10965,12 @@ export namespace Prisma {
     connectOrCreate?: QuestionCreateOrConnectWithoutSectionInput | QuestionCreateOrConnectWithoutSectionInput[]
     createMany?: QuestionCreateManySectionInputEnvelope
     connect?: QuestionWhereUniqueInput | QuestionWhereUniqueInput[]
+  }
+
+  export type SurveyCreateNestedOneWithoutSectionsInput = {
+    create?: XOR<SurveyCreateWithoutSectionsInput, SurveyUncheckedCreateWithoutSectionsInput>
+    connectOrCreate?: SurveyCreateOrConnectWithoutSectionsInput
+    connect?: SurveyWhereUniqueInput
   }
 
   export type QuestionUncheckedCreateNestedManyWithoutSectionInput = {
@@ -10953,14 +10988,6 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type SurveyUpdateOneRequiredWithoutSectionsNestedInput = {
-    create?: XOR<SurveyCreateWithoutSectionsInput, SurveyUncheckedCreateWithoutSectionsInput>
-    connectOrCreate?: SurveyCreateOrConnectWithoutSectionsInput
-    upsert?: SurveyUpsertWithoutSectionsInput
-    connect?: SurveyWhereUniqueInput
-    update?: XOR<XOR<SurveyUpdateToOneWithWhereWithoutSectionsInput, SurveyUpdateWithoutSectionsInput>, SurveyUncheckedUpdateWithoutSectionsInput>
-  }
-
   export type QuestionUpdateManyWithoutSectionNestedInput = {
     create?: XOR<QuestionCreateWithoutSectionInput, QuestionUncheckedCreateWithoutSectionInput> | QuestionCreateWithoutSectionInput[] | QuestionUncheckedCreateWithoutSectionInput[]
     connectOrCreate?: QuestionCreateOrConnectWithoutSectionInput | QuestionCreateOrConnectWithoutSectionInput[]
@@ -10973,6 +11000,14 @@ export namespace Prisma {
     update?: QuestionUpdateWithWhereUniqueWithoutSectionInput | QuestionUpdateWithWhereUniqueWithoutSectionInput[]
     updateMany?: QuestionUpdateManyWithWhereWithoutSectionInput | QuestionUpdateManyWithWhereWithoutSectionInput[]
     deleteMany?: QuestionScalarWhereInput | QuestionScalarWhereInput[]
+  }
+
+  export type SurveyUpdateOneRequiredWithoutSectionsNestedInput = {
+    create?: XOR<SurveyCreateWithoutSectionsInput, SurveyUncheckedCreateWithoutSectionsInput>
+    connectOrCreate?: SurveyCreateOrConnectWithoutSectionsInput
+    upsert?: SurveyUpsertWithoutSectionsInput
+    connect?: SurveyWhereUniqueInput
+    update?: XOR<XOR<SurveyUpdateToOneWithWhereWithoutSectionsInput, SurveyUpdateWithoutSectionsInput>, SurveyUncheckedUpdateWithoutSectionsInput>
   }
 
   export type QuestionUncheckedUpdateManyWithoutSectionNestedInput = {
@@ -10989,6 +11024,13 @@ export namespace Prisma {
     deleteMany?: QuestionScalarWhereInput | QuestionScalarWhereInput[]
   }
 
+  export type AnswerDetailCreateNestedManyWithoutQuestionInput = {
+    create?: XOR<AnswerDetailCreateWithoutQuestionInput, AnswerDetailUncheckedCreateWithoutQuestionInput> | AnswerDetailCreateWithoutQuestionInput[] | AnswerDetailUncheckedCreateWithoutQuestionInput[]
+    connectOrCreate?: AnswerDetailCreateOrConnectWithoutQuestionInput | AnswerDetailCreateOrConnectWithoutQuestionInput[]
+    createMany?: AnswerDetailCreateManyQuestionInputEnvelope
+    connect?: AnswerDetailWhereUniqueInput | AnswerDetailWhereUniqueInput[]
+  }
+
   export type SectionCreateNestedOneWithoutQuestionsInput = {
     create?: XOR<SectionCreateWithoutQuestionsInput, SectionUncheckedCreateWithoutQuestionsInput>
     connectOrCreate?: SectionCreateOrConnectWithoutQuestionsInput
@@ -11002,7 +11044,7 @@ export namespace Prisma {
     connect?: QuestionOptionWhereUniqueInput | QuestionOptionWhereUniqueInput[]
   }
 
-  export type AnswerDetailCreateNestedManyWithoutQuestionInput = {
+  export type AnswerDetailUncheckedCreateNestedManyWithoutQuestionInput = {
     create?: XOR<AnswerDetailCreateWithoutQuestionInput, AnswerDetailUncheckedCreateWithoutQuestionInput> | AnswerDetailCreateWithoutQuestionInput[] | AnswerDetailUncheckedCreateWithoutQuestionInput[]
     connectOrCreate?: AnswerDetailCreateOrConnectWithoutQuestionInput | AnswerDetailCreateOrConnectWithoutQuestionInput[]
     createMany?: AnswerDetailCreateManyQuestionInputEnvelope
@@ -11016,37 +11058,8 @@ export namespace Prisma {
     connect?: QuestionOptionWhereUniqueInput | QuestionOptionWhereUniqueInput[]
   }
 
-  export type AnswerDetailUncheckedCreateNestedManyWithoutQuestionInput = {
-    create?: XOR<AnswerDetailCreateWithoutQuestionInput, AnswerDetailUncheckedCreateWithoutQuestionInput> | AnswerDetailCreateWithoutQuestionInput[] | AnswerDetailUncheckedCreateWithoutQuestionInput[]
-    connectOrCreate?: AnswerDetailCreateOrConnectWithoutQuestionInput | AnswerDetailCreateOrConnectWithoutQuestionInput[]
-    createMany?: AnswerDetailCreateManyQuestionInputEnvelope
-    connect?: AnswerDetailWhereUniqueInput | AnswerDetailWhereUniqueInput[]
-  }
-
   export type EnumQuestionTypeFieldUpdateOperationsInput = {
     set?: $Enums.QuestionType
-  }
-
-  export type SectionUpdateOneRequiredWithoutQuestionsNestedInput = {
-    create?: XOR<SectionCreateWithoutQuestionsInput, SectionUncheckedCreateWithoutQuestionsInput>
-    connectOrCreate?: SectionCreateOrConnectWithoutQuestionsInput
-    upsert?: SectionUpsertWithoutQuestionsInput
-    connect?: SectionWhereUniqueInput
-    update?: XOR<XOR<SectionUpdateToOneWithWhereWithoutQuestionsInput, SectionUpdateWithoutQuestionsInput>, SectionUncheckedUpdateWithoutQuestionsInput>
-  }
-
-  export type QuestionOptionUpdateManyWithoutQuestionNestedInput = {
-    create?: XOR<QuestionOptionCreateWithoutQuestionInput, QuestionOptionUncheckedCreateWithoutQuestionInput> | QuestionOptionCreateWithoutQuestionInput[] | QuestionOptionUncheckedCreateWithoutQuestionInput[]
-    connectOrCreate?: QuestionOptionCreateOrConnectWithoutQuestionInput | QuestionOptionCreateOrConnectWithoutQuestionInput[]
-    upsert?: QuestionOptionUpsertWithWhereUniqueWithoutQuestionInput | QuestionOptionUpsertWithWhereUniqueWithoutQuestionInput[]
-    createMany?: QuestionOptionCreateManyQuestionInputEnvelope
-    set?: QuestionOptionWhereUniqueInput | QuestionOptionWhereUniqueInput[]
-    disconnect?: QuestionOptionWhereUniqueInput | QuestionOptionWhereUniqueInput[]
-    delete?: QuestionOptionWhereUniqueInput | QuestionOptionWhereUniqueInput[]
-    connect?: QuestionOptionWhereUniqueInput | QuestionOptionWhereUniqueInput[]
-    update?: QuestionOptionUpdateWithWhereUniqueWithoutQuestionInput | QuestionOptionUpdateWithWhereUniqueWithoutQuestionInput[]
-    updateMany?: QuestionOptionUpdateManyWithWhereWithoutQuestionInput | QuestionOptionUpdateManyWithWhereWithoutQuestionInput[]
-    deleteMany?: QuestionOptionScalarWhereInput | QuestionOptionScalarWhereInput[]
   }
 
   export type AnswerDetailUpdateManyWithoutQuestionNestedInput = {
@@ -11063,7 +11076,15 @@ export namespace Prisma {
     deleteMany?: AnswerDetailScalarWhereInput | AnswerDetailScalarWhereInput[]
   }
 
-  export type QuestionOptionUncheckedUpdateManyWithoutQuestionNestedInput = {
+  export type SectionUpdateOneRequiredWithoutQuestionsNestedInput = {
+    create?: XOR<SectionCreateWithoutQuestionsInput, SectionUncheckedCreateWithoutQuestionsInput>
+    connectOrCreate?: SectionCreateOrConnectWithoutQuestionsInput
+    upsert?: SectionUpsertWithoutQuestionsInput
+    connect?: SectionWhereUniqueInput
+    update?: XOR<XOR<SectionUpdateToOneWithWhereWithoutQuestionsInput, SectionUpdateWithoutQuestionsInput>, SectionUncheckedUpdateWithoutQuestionsInput>
+  }
+
+  export type QuestionOptionUpdateManyWithoutQuestionNestedInput = {
     create?: XOR<QuestionOptionCreateWithoutQuestionInput, QuestionOptionUncheckedCreateWithoutQuestionInput> | QuestionOptionCreateWithoutQuestionInput[] | QuestionOptionUncheckedCreateWithoutQuestionInput[]
     connectOrCreate?: QuestionOptionCreateOrConnectWithoutQuestionInput | QuestionOptionCreateOrConnectWithoutQuestionInput[]
     upsert?: QuestionOptionUpsertWithWhereUniqueWithoutQuestionInput | QuestionOptionUpsertWithWhereUniqueWithoutQuestionInput[]
@@ -11091,10 +11112,18 @@ export namespace Prisma {
     deleteMany?: AnswerDetailScalarWhereInput | AnswerDetailScalarWhereInput[]
   }
 
-  export type QuestionCreateNestedOneWithoutOptionsInput = {
-    create?: XOR<QuestionCreateWithoutOptionsInput, QuestionUncheckedCreateWithoutOptionsInput>
-    connectOrCreate?: QuestionCreateOrConnectWithoutOptionsInput
-    connect?: QuestionWhereUniqueInput
+  export type QuestionOptionUncheckedUpdateManyWithoutQuestionNestedInput = {
+    create?: XOR<QuestionOptionCreateWithoutQuestionInput, QuestionOptionUncheckedCreateWithoutQuestionInput> | QuestionOptionCreateWithoutQuestionInput[] | QuestionOptionUncheckedCreateWithoutQuestionInput[]
+    connectOrCreate?: QuestionOptionCreateOrConnectWithoutQuestionInput | QuestionOptionCreateOrConnectWithoutQuestionInput[]
+    upsert?: QuestionOptionUpsertWithWhereUniqueWithoutQuestionInput | QuestionOptionUpsertWithWhereUniqueWithoutQuestionInput[]
+    createMany?: QuestionOptionCreateManyQuestionInputEnvelope
+    set?: QuestionOptionWhereUniqueInput | QuestionOptionWhereUniqueInput[]
+    disconnect?: QuestionOptionWhereUniqueInput | QuestionOptionWhereUniqueInput[]
+    delete?: QuestionOptionWhereUniqueInput | QuestionOptionWhereUniqueInput[]
+    connect?: QuestionOptionWhereUniqueInput | QuestionOptionWhereUniqueInput[]
+    update?: QuestionOptionUpdateWithWhereUniqueWithoutQuestionInput | QuestionOptionUpdateWithWhereUniqueWithoutQuestionInput[]
+    updateMany?: QuestionOptionUpdateManyWithWhereWithoutQuestionInput | QuestionOptionUpdateManyWithWhereWithoutQuestionInput[]
+    deleteMany?: QuestionOptionScalarWhereInput | QuestionOptionScalarWhereInput[]
   }
 
   export type AnswerDetailCreateNestedManyWithoutSelectedOptionInput = {
@@ -11104,19 +11133,17 @@ export namespace Prisma {
     connect?: AnswerDetailWhereUniqueInput | AnswerDetailWhereUniqueInput[]
   }
 
+  export type QuestionCreateNestedOneWithoutOptionsInput = {
+    create?: XOR<QuestionCreateWithoutOptionsInput, QuestionUncheckedCreateWithoutOptionsInput>
+    connectOrCreate?: QuestionCreateOrConnectWithoutOptionsInput
+    connect?: QuestionWhereUniqueInput
+  }
+
   export type AnswerDetailUncheckedCreateNestedManyWithoutSelectedOptionInput = {
     create?: XOR<AnswerDetailCreateWithoutSelectedOptionInput, AnswerDetailUncheckedCreateWithoutSelectedOptionInput> | AnswerDetailCreateWithoutSelectedOptionInput[] | AnswerDetailUncheckedCreateWithoutSelectedOptionInput[]
     connectOrCreate?: AnswerDetailCreateOrConnectWithoutSelectedOptionInput | AnswerDetailCreateOrConnectWithoutSelectedOptionInput[]
     createMany?: AnswerDetailCreateManySelectedOptionInputEnvelope
     connect?: AnswerDetailWhereUniqueInput | AnswerDetailWhereUniqueInput[]
-  }
-
-  export type QuestionUpdateOneRequiredWithoutOptionsNestedInput = {
-    create?: XOR<QuestionCreateWithoutOptionsInput, QuestionUncheckedCreateWithoutOptionsInput>
-    connectOrCreate?: QuestionCreateOrConnectWithoutOptionsInput
-    upsert?: QuestionUpsertWithoutOptionsInput
-    connect?: QuestionWhereUniqueInput
-    update?: XOR<XOR<QuestionUpdateToOneWithWhereWithoutOptionsInput, QuestionUpdateWithoutOptionsInput>, QuestionUncheckedUpdateWithoutOptionsInput>
   }
 
   export type AnswerDetailUpdateManyWithoutSelectedOptionNestedInput = {
@@ -11131,6 +11158,14 @@ export namespace Prisma {
     update?: AnswerDetailUpdateWithWhereUniqueWithoutSelectedOptionInput | AnswerDetailUpdateWithWhereUniqueWithoutSelectedOptionInput[]
     updateMany?: AnswerDetailUpdateManyWithWhereWithoutSelectedOptionInput | AnswerDetailUpdateManyWithWhereWithoutSelectedOptionInput[]
     deleteMany?: AnswerDetailScalarWhereInput | AnswerDetailScalarWhereInput[]
+  }
+
+  export type QuestionUpdateOneRequiredWithoutOptionsNestedInput = {
+    create?: XOR<QuestionCreateWithoutOptionsInput, QuestionUncheckedCreateWithoutOptionsInput>
+    connectOrCreate?: QuestionCreateOrConnectWithoutOptionsInput
+    upsert?: QuestionUpsertWithoutOptionsInput
+    connect?: QuestionWhereUniqueInput
+    update?: XOR<XOR<QuestionUpdateToOneWithWhereWithoutOptionsInput, QuestionUpdateWithoutOptionsInput>, QuestionUncheckedUpdateWithoutOptionsInput>
   }
 
   export type AnswerDetailUncheckedUpdateManyWithoutSelectedOptionNestedInput = {
@@ -11413,6 +11448,30 @@ export namespace Prisma {
     _max?: NestedEnumQuestionTypeFilter<$PrismaModel>
   }
 
+  export type AnswerCreateWithoutSurveyInput = {
+    id?: string
+    submittedAt?: Date | string
+    fingerprint: string
+    answerDetails?: AnswerDetailCreateNestedManyWithoutAnswerInput
+  }
+
+  export type AnswerUncheckedCreateWithoutSurveyInput = {
+    id?: string
+    submittedAt?: Date | string
+    fingerprint: string
+    answerDetails?: AnswerDetailUncheckedCreateNestedManyWithoutAnswerInput
+  }
+
+  export type AnswerCreateOrConnectWithoutSurveyInput = {
+    where: AnswerWhereUniqueInput
+    create: XOR<AnswerCreateWithoutSurveyInput, AnswerUncheckedCreateWithoutSurveyInput>
+  }
+
+  export type AnswerCreateManySurveyInputEnvelope = {
+    data: AnswerCreateManySurveyInput | AnswerCreateManySurveyInput[]
+    skipDuplicates?: boolean
+  }
+
   export type SectionCreateWithoutSurveyInput = {
     id?: string
     title: string
@@ -11439,26 +11498,30 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type AnswerCreateWithoutSurveyInput = {
-    id?: string
-    submittedAt?: Date | string
-    answerDetails?: AnswerDetailCreateNestedManyWithoutAnswerInput
-  }
-
-  export type AnswerUncheckedCreateWithoutSurveyInput = {
-    id?: string
-    submittedAt?: Date | string
-    answerDetails?: AnswerDetailUncheckedCreateNestedManyWithoutAnswerInput
-  }
-
-  export type AnswerCreateOrConnectWithoutSurveyInput = {
+  export type AnswerUpsertWithWhereUniqueWithoutSurveyInput = {
     where: AnswerWhereUniqueInput
+    update: XOR<AnswerUpdateWithoutSurveyInput, AnswerUncheckedUpdateWithoutSurveyInput>
     create: XOR<AnswerCreateWithoutSurveyInput, AnswerUncheckedCreateWithoutSurveyInput>
   }
 
-  export type AnswerCreateManySurveyInputEnvelope = {
-    data: AnswerCreateManySurveyInput | AnswerCreateManySurveyInput[]
-    skipDuplicates?: boolean
+  export type AnswerUpdateWithWhereUniqueWithoutSurveyInput = {
+    where: AnswerWhereUniqueInput
+    data: XOR<AnswerUpdateWithoutSurveyInput, AnswerUncheckedUpdateWithoutSurveyInput>
+  }
+
+  export type AnswerUpdateManyWithWhereWithoutSurveyInput = {
+    where: AnswerScalarWhereInput
+    data: XOR<AnswerUpdateManyMutationInput, AnswerUncheckedUpdateManyWithoutSurveyInput>
+  }
+
+  export type AnswerScalarWhereInput = {
+    AND?: AnswerScalarWhereInput | AnswerScalarWhereInput[]
+    OR?: AnswerScalarWhereInput[]
+    NOT?: AnswerScalarWhereInput | AnswerScalarWhereInput[]
+    id?: StringFilter<"Answer"> | string
+    surveyId?: StringFilter<"Answer"> | string
+    submittedAt?: DateTimeFilter<"Answer"> | Date | string
+    fingerprint?: StringFilter<"Answer"> | string
   }
 
   export type SectionUpsertWithWhereUniqueWithoutSurveyInput = {
@@ -11488,29 +11551,36 @@ export namespace Prisma {
     surveyId?: StringFilter<"Section"> | string
   }
 
-  export type AnswerUpsertWithWhereUniqueWithoutSurveyInput = {
-    where: AnswerWhereUniqueInput
-    update: XOR<AnswerUpdateWithoutSurveyInput, AnswerUncheckedUpdateWithoutSurveyInput>
-    create: XOR<AnswerCreateWithoutSurveyInput, AnswerUncheckedCreateWithoutSurveyInput>
+  export type QuestionCreateWithoutSectionInput = {
+    id?: string
+    text: string
+    type: $Enums.QuestionType
+    isRequired?: boolean
+    order: number
+    placeholder?: string | null
+    answerDetails?: AnswerDetailCreateNestedManyWithoutQuestionInput
+    options?: QuestionOptionCreateNestedManyWithoutQuestionInput
   }
 
-  export type AnswerUpdateWithWhereUniqueWithoutSurveyInput = {
-    where: AnswerWhereUniqueInput
-    data: XOR<AnswerUpdateWithoutSurveyInput, AnswerUncheckedUpdateWithoutSurveyInput>
+  export type QuestionUncheckedCreateWithoutSectionInput = {
+    id?: string
+    text: string
+    type: $Enums.QuestionType
+    isRequired?: boolean
+    order: number
+    placeholder?: string | null
+    answerDetails?: AnswerDetailUncheckedCreateNestedManyWithoutQuestionInput
+    options?: QuestionOptionUncheckedCreateNestedManyWithoutQuestionInput
   }
 
-  export type AnswerUpdateManyWithWhereWithoutSurveyInput = {
-    where: AnswerScalarWhereInput
-    data: XOR<AnswerUpdateManyMutationInput, AnswerUncheckedUpdateManyWithoutSurveyInput>
+  export type QuestionCreateOrConnectWithoutSectionInput = {
+    where: QuestionWhereUniqueInput
+    create: XOR<QuestionCreateWithoutSectionInput, QuestionUncheckedCreateWithoutSectionInput>
   }
 
-  export type AnswerScalarWhereInput = {
-    AND?: AnswerScalarWhereInput | AnswerScalarWhereInput[]
-    OR?: AnswerScalarWhereInput[]
-    NOT?: AnswerScalarWhereInput | AnswerScalarWhereInput[]
-    id?: StringFilter<"Answer"> | string
-    surveyId?: StringFilter<"Answer"> | string
-    submittedAt?: DateTimeFilter<"Answer"> | Date | string
+  export type QuestionCreateManySectionInputEnvelope = {
+    data: QuestionCreateManySectionInput | QuestionCreateManySectionInput[]
+    skipDuplicates?: boolean
   }
 
   export type SurveyCreateWithoutSectionsInput = {
@@ -11540,36 +11610,33 @@ export namespace Prisma {
     create: XOR<SurveyCreateWithoutSectionsInput, SurveyUncheckedCreateWithoutSectionsInput>
   }
 
-  export type QuestionCreateWithoutSectionInput = {
-    id?: string
-    text: string
-    type: $Enums.QuestionType
-    isRequired?: boolean
-    order: number
-    placeholder?: string | null
-    options?: QuestionOptionCreateNestedManyWithoutQuestionInput
-    answerDetails?: AnswerDetailCreateNestedManyWithoutQuestionInput
-  }
-
-  export type QuestionUncheckedCreateWithoutSectionInput = {
-    id?: string
-    text: string
-    type: $Enums.QuestionType
-    isRequired?: boolean
-    order: number
-    placeholder?: string | null
-    options?: QuestionOptionUncheckedCreateNestedManyWithoutQuestionInput
-    answerDetails?: AnswerDetailUncheckedCreateNestedManyWithoutQuestionInput
-  }
-
-  export type QuestionCreateOrConnectWithoutSectionInput = {
+  export type QuestionUpsertWithWhereUniqueWithoutSectionInput = {
     where: QuestionWhereUniqueInput
+    update: XOR<QuestionUpdateWithoutSectionInput, QuestionUncheckedUpdateWithoutSectionInput>
     create: XOR<QuestionCreateWithoutSectionInput, QuestionUncheckedCreateWithoutSectionInput>
   }
 
-  export type QuestionCreateManySectionInputEnvelope = {
-    data: QuestionCreateManySectionInput | QuestionCreateManySectionInput[]
-    skipDuplicates?: boolean
+  export type QuestionUpdateWithWhereUniqueWithoutSectionInput = {
+    where: QuestionWhereUniqueInput
+    data: XOR<QuestionUpdateWithoutSectionInput, QuestionUncheckedUpdateWithoutSectionInput>
+  }
+
+  export type QuestionUpdateManyWithWhereWithoutSectionInput = {
+    where: QuestionScalarWhereInput
+    data: XOR<QuestionUpdateManyMutationInput, QuestionUncheckedUpdateManyWithoutSectionInput>
+  }
+
+  export type QuestionScalarWhereInput = {
+    AND?: QuestionScalarWhereInput | QuestionScalarWhereInput[]
+    OR?: QuestionScalarWhereInput[]
+    NOT?: QuestionScalarWhereInput | QuestionScalarWhereInput[]
+    id?: StringFilter<"Question"> | string
+    text?: StringFilter<"Question"> | string
+    type?: EnumQuestionTypeFilter<"Question"> | $Enums.QuestionType
+    isRequired?: BoolFilter<"Question"> | boolean
+    order?: IntFilter<"Question"> | number
+    placeholder?: StringNullableFilter<"Question"> | string | null
+    sectionId?: StringFilter<"Question"> | string
   }
 
   export type SurveyUpsertWithoutSectionsInput = {
@@ -11605,33 +11672,28 @@ export namespace Prisma {
     answers?: AnswerUncheckedUpdateManyWithoutSurveyNestedInput
   }
 
-  export type QuestionUpsertWithWhereUniqueWithoutSectionInput = {
-    where: QuestionWhereUniqueInput
-    update: XOR<QuestionUpdateWithoutSectionInput, QuestionUncheckedUpdateWithoutSectionInput>
-    create: XOR<QuestionCreateWithoutSectionInput, QuestionUncheckedCreateWithoutSectionInput>
+  export type AnswerDetailCreateWithoutQuestionInput = {
+    id?: string
+    value?: string | null
+    answer: AnswerCreateNestedOneWithoutAnswerDetailsInput
+    selectedOption?: QuestionOptionCreateNestedOneWithoutAnswerDetailsInput
   }
 
-  export type QuestionUpdateWithWhereUniqueWithoutSectionInput = {
-    where: QuestionWhereUniqueInput
-    data: XOR<QuestionUpdateWithoutSectionInput, QuestionUncheckedUpdateWithoutSectionInput>
+  export type AnswerDetailUncheckedCreateWithoutQuestionInput = {
+    id?: string
+    answerId: string
+    value?: string | null
+    selectedOptionId?: string | null
   }
 
-  export type QuestionUpdateManyWithWhereWithoutSectionInput = {
-    where: QuestionScalarWhereInput
-    data: XOR<QuestionUpdateManyMutationInput, QuestionUncheckedUpdateManyWithoutSectionInput>
+  export type AnswerDetailCreateOrConnectWithoutQuestionInput = {
+    where: AnswerDetailWhereUniqueInput
+    create: XOR<AnswerDetailCreateWithoutQuestionInput, AnswerDetailUncheckedCreateWithoutQuestionInput>
   }
 
-  export type QuestionScalarWhereInput = {
-    AND?: QuestionScalarWhereInput | QuestionScalarWhereInput[]
-    OR?: QuestionScalarWhereInput[]
-    NOT?: QuestionScalarWhereInput | QuestionScalarWhereInput[]
-    id?: StringFilter<"Question"> | string
-    text?: StringFilter<"Question"> | string
-    type?: EnumQuestionTypeFilter<"Question"> | $Enums.QuestionType
-    isRequired?: BoolFilter<"Question"> | boolean
-    order?: IntFilter<"Question"> | number
-    placeholder?: StringNullableFilter<"Question"> | string | null
-    sectionId?: StringFilter<"Question"> | string
+  export type AnswerDetailCreateManyQuestionInputEnvelope = {
+    data: AnswerDetailCreateManyQuestionInput | AnswerDetailCreateManyQuestionInput[]
+    skipDuplicates?: boolean
   }
 
   export type SectionCreateWithoutQuestionsInput = {
@@ -11681,28 +11743,31 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type AnswerDetailCreateWithoutQuestionInput = {
-    id?: string
-    value?: string | null
-    answer: AnswerCreateNestedOneWithoutAnswerDetailsInput
-    selectedOption?: QuestionOptionCreateNestedOneWithoutAnswerDetailsInput
-  }
-
-  export type AnswerDetailUncheckedCreateWithoutQuestionInput = {
-    id?: string
-    answerId: string
-    value?: string | null
-    selectedOptionId?: string | null
-  }
-
-  export type AnswerDetailCreateOrConnectWithoutQuestionInput = {
+  export type AnswerDetailUpsertWithWhereUniqueWithoutQuestionInput = {
     where: AnswerDetailWhereUniqueInput
+    update: XOR<AnswerDetailUpdateWithoutQuestionInput, AnswerDetailUncheckedUpdateWithoutQuestionInput>
     create: XOR<AnswerDetailCreateWithoutQuestionInput, AnswerDetailUncheckedCreateWithoutQuestionInput>
   }
 
-  export type AnswerDetailCreateManyQuestionInputEnvelope = {
-    data: AnswerDetailCreateManyQuestionInput | AnswerDetailCreateManyQuestionInput[]
-    skipDuplicates?: boolean
+  export type AnswerDetailUpdateWithWhereUniqueWithoutQuestionInput = {
+    where: AnswerDetailWhereUniqueInput
+    data: XOR<AnswerDetailUpdateWithoutQuestionInput, AnswerDetailUncheckedUpdateWithoutQuestionInput>
+  }
+
+  export type AnswerDetailUpdateManyWithWhereWithoutQuestionInput = {
+    where: AnswerDetailScalarWhereInput
+    data: XOR<AnswerDetailUpdateManyMutationInput, AnswerDetailUncheckedUpdateManyWithoutQuestionInput>
+  }
+
+  export type AnswerDetailScalarWhereInput = {
+    AND?: AnswerDetailScalarWhereInput | AnswerDetailScalarWhereInput[]
+    OR?: AnswerDetailScalarWhereInput[]
+    NOT?: AnswerDetailScalarWhereInput | AnswerDetailScalarWhereInput[]
+    id?: StringFilter<"AnswerDetail"> | string
+    answerId?: StringFilter<"AnswerDetail"> | string
+    questionId?: StringFilter<"AnswerDetail"> | string
+    value?: StringNullableFilter<"AnswerDetail"> | string | null
+    selectedOptionId?: StringNullableFilter<"AnswerDetail"> | string | null
   }
 
   export type SectionUpsertWithoutQuestionsInput = {
@@ -11759,60 +11824,6 @@ export namespace Prisma {
     questionId?: StringFilter<"QuestionOption"> | string
   }
 
-  export type AnswerDetailUpsertWithWhereUniqueWithoutQuestionInput = {
-    where: AnswerDetailWhereUniqueInput
-    update: XOR<AnswerDetailUpdateWithoutQuestionInput, AnswerDetailUncheckedUpdateWithoutQuestionInput>
-    create: XOR<AnswerDetailCreateWithoutQuestionInput, AnswerDetailUncheckedCreateWithoutQuestionInput>
-  }
-
-  export type AnswerDetailUpdateWithWhereUniqueWithoutQuestionInput = {
-    where: AnswerDetailWhereUniqueInput
-    data: XOR<AnswerDetailUpdateWithoutQuestionInput, AnswerDetailUncheckedUpdateWithoutQuestionInput>
-  }
-
-  export type AnswerDetailUpdateManyWithWhereWithoutQuestionInput = {
-    where: AnswerDetailScalarWhereInput
-    data: XOR<AnswerDetailUpdateManyMutationInput, AnswerDetailUncheckedUpdateManyWithoutQuestionInput>
-  }
-
-  export type AnswerDetailScalarWhereInput = {
-    AND?: AnswerDetailScalarWhereInput | AnswerDetailScalarWhereInput[]
-    OR?: AnswerDetailScalarWhereInput[]
-    NOT?: AnswerDetailScalarWhereInput | AnswerDetailScalarWhereInput[]
-    id?: StringFilter<"AnswerDetail"> | string
-    answerId?: StringFilter<"AnswerDetail"> | string
-    questionId?: StringFilter<"AnswerDetail"> | string
-    value?: StringNullableFilter<"AnswerDetail"> | string | null
-    selectedOptionId?: StringNullableFilter<"AnswerDetail"> | string | null
-  }
-
-  export type QuestionCreateWithoutOptionsInput = {
-    id?: string
-    text: string
-    type: $Enums.QuestionType
-    isRequired?: boolean
-    order: number
-    placeholder?: string | null
-    section: SectionCreateNestedOneWithoutQuestionsInput
-    answerDetails?: AnswerDetailCreateNestedManyWithoutQuestionInput
-  }
-
-  export type QuestionUncheckedCreateWithoutOptionsInput = {
-    id?: string
-    text: string
-    type: $Enums.QuestionType
-    isRequired?: boolean
-    order: number
-    placeholder?: string | null
-    sectionId: string
-    answerDetails?: AnswerDetailUncheckedCreateNestedManyWithoutQuestionInput
-  }
-
-  export type QuestionCreateOrConnectWithoutOptionsInput = {
-    where: QuestionWhereUniqueInput
-    create: XOR<QuestionCreateWithoutOptionsInput, QuestionUncheckedCreateWithoutOptionsInput>
-  }
-
   export type AnswerDetailCreateWithoutSelectedOptionInput = {
     id?: string
     value?: string | null
@@ -11837,6 +11848,49 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type QuestionCreateWithoutOptionsInput = {
+    id?: string
+    text: string
+    type: $Enums.QuestionType
+    isRequired?: boolean
+    order: number
+    placeholder?: string | null
+    answerDetails?: AnswerDetailCreateNestedManyWithoutQuestionInput
+    section: SectionCreateNestedOneWithoutQuestionsInput
+  }
+
+  export type QuestionUncheckedCreateWithoutOptionsInput = {
+    id?: string
+    text: string
+    type: $Enums.QuestionType
+    isRequired?: boolean
+    order: number
+    placeholder?: string | null
+    sectionId: string
+    answerDetails?: AnswerDetailUncheckedCreateNestedManyWithoutQuestionInput
+  }
+
+  export type QuestionCreateOrConnectWithoutOptionsInput = {
+    where: QuestionWhereUniqueInput
+    create: XOR<QuestionCreateWithoutOptionsInput, QuestionUncheckedCreateWithoutOptionsInput>
+  }
+
+  export type AnswerDetailUpsertWithWhereUniqueWithoutSelectedOptionInput = {
+    where: AnswerDetailWhereUniqueInput
+    update: XOR<AnswerDetailUpdateWithoutSelectedOptionInput, AnswerDetailUncheckedUpdateWithoutSelectedOptionInput>
+    create: XOR<AnswerDetailCreateWithoutSelectedOptionInput, AnswerDetailUncheckedCreateWithoutSelectedOptionInput>
+  }
+
+  export type AnswerDetailUpdateWithWhereUniqueWithoutSelectedOptionInput = {
+    where: AnswerDetailWhereUniqueInput
+    data: XOR<AnswerDetailUpdateWithoutSelectedOptionInput, AnswerDetailUncheckedUpdateWithoutSelectedOptionInput>
+  }
+
+  export type AnswerDetailUpdateManyWithWhereWithoutSelectedOptionInput = {
+    where: AnswerDetailScalarWhereInput
+    data: XOR<AnswerDetailUpdateManyMutationInput, AnswerDetailUncheckedUpdateManyWithoutSelectedOptionInput>
+  }
+
   export type QuestionUpsertWithoutOptionsInput = {
     update: XOR<QuestionUpdateWithoutOptionsInput, QuestionUncheckedUpdateWithoutOptionsInput>
     create: XOR<QuestionCreateWithoutOptionsInput, QuestionUncheckedCreateWithoutOptionsInput>
@@ -11855,8 +11909,8 @@ export namespace Prisma {
     isRequired?: BoolFieldUpdateOperationsInput | boolean
     order?: IntFieldUpdateOperationsInput | number
     placeholder?: NullableStringFieldUpdateOperationsInput | string | null
-    section?: SectionUpdateOneRequiredWithoutQuestionsNestedInput
     answerDetails?: AnswerDetailUpdateManyWithoutQuestionNestedInput
+    section?: SectionUpdateOneRequiredWithoutQuestionsNestedInput
   }
 
   export type QuestionUncheckedUpdateWithoutOptionsInput = {
@@ -11868,22 +11922,6 @@ export namespace Prisma {
     placeholder?: NullableStringFieldUpdateOperationsInput | string | null
     sectionId?: StringFieldUpdateOperationsInput | string
     answerDetails?: AnswerDetailUncheckedUpdateManyWithoutQuestionNestedInput
-  }
-
-  export type AnswerDetailUpsertWithWhereUniqueWithoutSelectedOptionInput = {
-    where: AnswerDetailWhereUniqueInput
-    update: XOR<AnswerDetailUpdateWithoutSelectedOptionInput, AnswerDetailUncheckedUpdateWithoutSelectedOptionInput>
-    create: XOR<AnswerDetailCreateWithoutSelectedOptionInput, AnswerDetailUncheckedCreateWithoutSelectedOptionInput>
-  }
-
-  export type AnswerDetailUpdateWithWhereUniqueWithoutSelectedOptionInput = {
-    where: AnswerDetailWhereUniqueInput
-    data: XOR<AnswerDetailUpdateWithoutSelectedOptionInput, AnswerDetailUncheckedUpdateWithoutSelectedOptionInput>
-  }
-
-  export type AnswerDetailUpdateManyWithWhereWithoutSelectedOptionInput = {
-    where: AnswerDetailScalarWhereInput
-    data: XOR<AnswerDetailUpdateManyMutationInput, AnswerDetailUncheckedUpdateManyWithoutSelectedOptionInput>
   }
 
   export type SurveyCreateWithoutAnswersInput = {
@@ -11989,6 +12027,7 @@ export namespace Prisma {
   export type AnswerCreateWithoutAnswerDetailsInput = {
     id?: string
     submittedAt?: Date | string
+    fingerprint: string
     survey: SurveyCreateNestedOneWithoutAnswersInput
   }
 
@@ -11996,6 +12035,7 @@ export namespace Prisma {
     id?: string
     surveyId: string
     submittedAt?: Date | string
+    fingerprint: string
   }
 
   export type AnswerCreateOrConnectWithoutAnswerDetailsInput = {
@@ -12065,6 +12105,7 @@ export namespace Prisma {
   export type AnswerUpdateWithoutAnswerDetailsInput = {
     id?: StringFieldUpdateOperationsInput | string
     submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fingerprint?: StringFieldUpdateOperationsInput | string
     survey?: SurveyUpdateOneRequiredWithoutAnswersNestedInput
   }
 
@@ -12072,6 +12113,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     surveyId?: StringFieldUpdateOperationsInput | string
     submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fingerprint?: StringFieldUpdateOperationsInput | string
   }
 
   export type QuestionUpsertWithoutAnswerDetailsInput = {
@@ -12134,6 +12176,12 @@ export namespace Prisma {
     questionId?: StringFieldUpdateOperationsInput | string
   }
 
+  export type AnswerCreateManySurveyInput = {
+    id?: string
+    submittedAt?: Date | string
+    fingerprint: string
+  }
+
   export type SectionCreateManySurveyInput = {
     id?: string
     title: string
@@ -12141,9 +12189,24 @@ export namespace Prisma {
     order: number
   }
 
-  export type AnswerCreateManySurveyInput = {
-    id?: string
-    submittedAt?: Date | string
+  export type AnswerUpdateWithoutSurveyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fingerprint?: StringFieldUpdateOperationsInput | string
+    answerDetails?: AnswerDetailUpdateManyWithoutAnswerNestedInput
+  }
+
+  export type AnswerUncheckedUpdateWithoutSurveyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fingerprint?: StringFieldUpdateOperationsInput | string
+    answerDetails?: AnswerDetailUncheckedUpdateManyWithoutAnswerNestedInput
+  }
+
+  export type AnswerUncheckedUpdateManyWithoutSurveyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fingerprint?: StringFieldUpdateOperationsInput | string
   }
 
   export type SectionUpdateWithoutSurveyInput = {
@@ -12169,23 +12232,6 @@ export namespace Prisma {
     order?: IntFieldUpdateOperationsInput | number
   }
 
-  export type AnswerUpdateWithoutSurveyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    answerDetails?: AnswerDetailUpdateManyWithoutAnswerNestedInput
-  }
-
-  export type AnswerUncheckedUpdateWithoutSurveyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    answerDetails?: AnswerDetailUncheckedUpdateManyWithoutAnswerNestedInput
-  }
-
-  export type AnswerUncheckedUpdateManyWithoutSurveyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    submittedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type QuestionCreateManySectionInput = {
     id?: string
     text: string
@@ -12202,8 +12248,8 @@ export namespace Prisma {
     isRequired?: BoolFieldUpdateOperationsInput | boolean
     order?: IntFieldUpdateOperationsInput | number
     placeholder?: NullableStringFieldUpdateOperationsInput | string | null
-    options?: QuestionOptionUpdateManyWithoutQuestionNestedInput
     answerDetails?: AnswerDetailUpdateManyWithoutQuestionNestedInput
+    options?: QuestionOptionUpdateManyWithoutQuestionNestedInput
   }
 
   export type QuestionUncheckedUpdateWithoutSectionInput = {
@@ -12213,8 +12259,8 @@ export namespace Prisma {
     isRequired?: BoolFieldUpdateOperationsInput | boolean
     order?: IntFieldUpdateOperationsInput | number
     placeholder?: NullableStringFieldUpdateOperationsInput | string | null
-    options?: QuestionOptionUncheckedUpdateManyWithoutQuestionNestedInput
     answerDetails?: AnswerDetailUncheckedUpdateManyWithoutQuestionNestedInput
+    options?: QuestionOptionUncheckedUpdateManyWithoutQuestionNestedInput
   }
 
   export type QuestionUncheckedUpdateManyWithoutSectionInput = {
@@ -12226,6 +12272,13 @@ export namespace Prisma {
     placeholder?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type AnswerDetailCreateManyQuestionInput = {
+    id?: string
+    answerId: string
+    value?: string | null
+    selectedOptionId?: string | null
+  }
+
   export type QuestionOptionCreateManyQuestionInput = {
     id?: string
     text: string
@@ -12233,11 +12286,25 @@ export namespace Prisma {
     order: number
   }
 
-  export type AnswerDetailCreateManyQuestionInput = {
-    id?: string
-    answerId: string
-    value?: string | null
-    selectedOptionId?: string | null
+  export type AnswerDetailUpdateWithoutQuestionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    value?: NullableStringFieldUpdateOperationsInput | string | null
+    answer?: AnswerUpdateOneRequiredWithoutAnswerDetailsNestedInput
+    selectedOption?: QuestionOptionUpdateOneWithoutAnswerDetailsNestedInput
+  }
+
+  export type AnswerDetailUncheckedUpdateWithoutQuestionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    answerId?: StringFieldUpdateOperationsInput | string
+    value?: NullableStringFieldUpdateOperationsInput | string | null
+    selectedOptionId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AnswerDetailUncheckedUpdateManyWithoutQuestionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    answerId?: StringFieldUpdateOperationsInput | string
+    value?: NullableStringFieldUpdateOperationsInput | string | null
+    selectedOptionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type QuestionOptionUpdateWithoutQuestionInput = {
@@ -12261,27 +12328,6 @@ export namespace Prisma {
     text?: StringFieldUpdateOperationsInput | string
     value?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type AnswerDetailUpdateWithoutQuestionInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    value?: NullableStringFieldUpdateOperationsInput | string | null
-    answer?: AnswerUpdateOneRequiredWithoutAnswerDetailsNestedInput
-    selectedOption?: QuestionOptionUpdateOneWithoutAnswerDetailsNestedInput
-  }
-
-  export type AnswerDetailUncheckedUpdateWithoutQuestionInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    answerId?: StringFieldUpdateOperationsInput | string
-    value?: NullableStringFieldUpdateOperationsInput | string | null
-    selectedOptionId?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type AnswerDetailUncheckedUpdateManyWithoutQuestionInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    answerId?: StringFieldUpdateOperationsInput | string
-    value?: NullableStringFieldUpdateOperationsInput | string | null
-    selectedOptionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AnswerDetailCreateManySelectedOptionInput = {

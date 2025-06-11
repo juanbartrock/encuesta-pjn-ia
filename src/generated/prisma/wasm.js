@@ -168,7 +168,8 @@ exports.Prisma.QuestionOptionScalarFieldEnum = {
 exports.Prisma.AnswerScalarFieldEnum = {
   id: 'id',
   surveyId: 'surveyId',
-  submittedAt: 'submittedAt'
+  submittedAt: 'submittedAt',
+  fingerprint: 'fingerprint'
 };
 
 exports.Prisma.AnswerDetailScalarFieldEnum = {
