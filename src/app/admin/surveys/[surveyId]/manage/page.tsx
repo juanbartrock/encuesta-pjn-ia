@@ -840,9 +840,14 @@ export default function ManageSurveyPage() {
           <h1 className="text-2xl font-bold mb-1">Gestionar Encuesta</h1>
           <p className="text-lg text-gray-700">{survey.title}</p>
         </div>
-        <Link href="/admin/dashboard" className="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded transition duration-150 ease-in-out">
-          Volver al Dashboard
-        </Link>
+        <div className="flex space-x-3">
+          <Link href={`/admin/surveys/${survey.id}/results`} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded transition duration-150 ease-in-out">
+            Ver Resultados
+          </Link>
+          <Link href="/admin/dashboard" className="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded transition duration-150 ease-in-out">
+            Volver al Dashboard
+          </Link>
+        </div>
       </div>
       
       <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-6">

@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@fingerprintjs/fingerprintjs": "^4.6.2",
+    "@heroicons/react": "^2.2.0",
     "@prisma/client": "^6.8.2",
     "bcryptjs": "^3.0.2",
     "express-rate-limit": "^7.5.0",

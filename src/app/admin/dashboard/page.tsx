@@ -383,6 +383,9 @@ const AdminDashboardPage = () => {
                     <Link href={`/admin/surveys/${survey.id}/manage`} className="text-green-600 hover:text-green-900 mr-3">
                       Gestionar
                     </Link>
+                    <Link href={`/admin/surveys/${survey.id}/results`} className="text-blue-600 hover:text-blue-900 mr-3">
+                      Ver Resultados
+                    </Link>
                     <button
                       onClick={() => handleDeleteSurvey(survey.id)}
                       className="text-red-600 hover:text-red-900"
